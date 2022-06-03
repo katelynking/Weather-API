@@ -1,0 +1,33 @@
+.app-title {
+    background-image: linear-gradient(to right, rgb(66, 66, 212), rgb(19, 4, 60));
+    color:white;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.card-header {
+    font-weight:bold;
+    background-color: white;
+    border: none;
+}
+
+.form-control {
+    border-radius: 6px;
+    height: 50px;
+}
+
+#search-btn {
+    border-radius: 6px;
+    padding: 8px;
+    border:none;
+}
+
+.search-history{
+    text-align: center;
+    justify-items: center;
+    padding: 8px;
+    background-color: lightgrey;
+    color: black;
+    border-radius: 6px;
+}
