@@ -25,20 +25,27 @@
             <div class="card">
                 <h3 class="card-header">Search for a City:</h3>
                 <form id="user-form" class="card-body">
-                    <input name="city-search" id="city-name" class="form-control" type="text" placeholder="Novi Sad"><br>
+                    <input name="city-search" id="city-name" class="form-control" type="text" placeholder="Belgrade"><br>
                     <button type="submit" id="search-btn" class="btn-primary btn-block">Search</button>
+                    <button type="clear" id="clear-btn" class="btn-primary btn-block">Clear</button>
                 </form>
             </div>
 
             <div class="card"><br>
                 <p class="search-history">Search history</p>
+                <p id="past-searches"></p>
 
             </div>
         </div>
             <div class="col-8">
                 <div class="card">
-                <h2 class="subtitle"><span id="city-search">Belgrade</span></h2>
-                <div id="weather-container" class="list-group"></div>
+                <h1 class="subtitle"><span id="city-input"></span></h1>
+                <div id="weather-container" class="list-group">
+                    <h5 id="city-temp"></h5>
+                    <h5 id="windspeed"></h5>
+                    <h5 id="humidity"></h5>
+                    <h5 id="uv-index"></h5>
+                </div>
             </div>
             <div class="flex-row justify-space-between">
             <div class="row">

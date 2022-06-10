@@ -10,6 +10,7 @@
     font-weight:bold;
     background-color: white;
     border: none;
+    
 }
 
 .form-control {
@@ -23,6 +24,13 @@
     border:none;
 }
 
+#clear-btn {
+    border-radius: 6px;
+    padding: 8px;
+    border:none;
+    background-color: gray;
+}
+
 .search-history{
     text-align: center;
     justify-items: center;
@@ -30,4 +38,28 @@
     background-color: lightgrey;
     color: black;
     border-radius: 6px;
+}
+
+.favorable {
+    background-color: green;
+    width: fit-content;
+    color: white;
+    padding:8px;
+    border-radius:6px;
+}
+
+.moderate {
+    background-color: yellow;
+    width: fit-content;
+    color: white;
+    padding:8px;
+    border-radius:6px;
+}
+
+.severe {
+    background-color: red;
+    width: fit-content;
+    color: white;
+    padding:8px;
+    border-radius:6px;
 }
