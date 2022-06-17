@@ -12,7 +12,7 @@ function citySearch(citySearch) {
     var searchInputVal = citySearch;
 
     searchHistory.unshift(searchInputVal);
-    localStorage.setItem("City Name", JSON.stringify(searchHistory));
+    localStorage.setItem("city name", JSON.stringify(searchHistory));
 
 
     fetch ("http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&limit=1&units=imperial&appid=" + weatherApiKey)
@@ -68,9 +68,9 @@ function citySearch(citySearch) {
                 //weather icon
                 var dd = data.daily;
                 const icon = dd[0].weather[0].icon;
-                console.log(icon);
-                //const mainIcon =  document.createElement('img');
-                //icon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
+                var img =  document.getElementById('icon-img');
+                img.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
+
 
                 
                 
@@ -125,15 +125,16 @@ function clearStorage() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (localStorage.getItem("City Name")) {
-      searchHistory = localStorage.getItem(
-        "City Name",
-        JSON.stringify(searchHistory)
-      );
-      searchHistory = JSON.parse(searchHistory);
-      console.log(searchHistory);
-      document.getElementById("past-searches").value = searchHistory[0];
-      citySearch();
-    }
+        if (localStorage.getItem("city name")) {
+            searchHistory = localStorage.getItem(
+              "city name",
+              JSON.stringify(searchHistory)
+            );
+            searchHistory = JSON.parse(searchHistory);
+            console.log("SH= " + searchHistory);
+            //document.getElementById("search-history").value = searchHistory[0];
+            citySearch();
+          }
+    
   });
 
