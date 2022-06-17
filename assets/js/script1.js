@@ -2,25 +2,47 @@
 var weatherApiKey = "e90149d5df606728396540fdb296f657";
 var cityInput = document.getElementById('city-name');
 var searchBtn = document.getElementById('search-btn');
+var searchHistory = [];
 
 
 
 function citySearch(citySearch) {
+    
+    
+    var searchInputVal = citySearch;
+
+    searchHistory.unshift(searchInputVal);
+    localStorage.setItem("City Name", JSON.stringify(searchHistory));
+
+
     fetch ("http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&limit=1&units=imperial&appid=" + weatherApiKey)
         .then(function (response) {
             return response.json();
         }).then(function (data) {
-            var div = document.createElement("div");
-            var cityName = document.getElementById('city-input');
-        
-            cityName.textContent = data.name;
-            var cityTemp = document.getElementById("city-temp");
-            cityTemp.textContent = "Temp: " + Math.round(data.main.temp) + "\u00B0F ";
-            var windSpeed = document.getElementById("windspeed");
-            windSpeed.textContent = "Windspeed: " + Math.round(data.wind.speed) + " mph";
-            var humidity = document.getElementById("humidity");
-            humidity.textContent = "Humidity: " + data.main.humidity + "%";
             
+            //city name
+            var cityName = document.getElementById('city-input');
+            cityName.textContent = data.name;
+            
+            //date 
+            var currentDate = moment().format("MM/DD/YYYY");
+            var currentDateEl = document.getElementById('date');
+            currentDateEl.textContent = "("+currentDate+")";
+            
+            //temp
+            var cityTemp = document.getElementById("city-temp");
+            cityTemp.textContent = Math.round(data.main.temp) + "\u00B0F ";
+            
+            //wind speed
+            var windSpeed = document.getElementById("windspeed");
+            windSpeed.textContent = Math.round(data.wind.speed) + " mph";
+            
+            //humidity
+            var humidity = document.getElementById("humidity");
+            humidity.textContent = data.main.humidity + "%";
+        
+
+            //latitude and longitude
             const lat = data.coord.lat;
             const lon = data.coord.lon;
 
@@ -29,10 +51,11 @@ function citySearch(citySearch) {
                 return response.json();
             }).then(function (data) {
                 console.log(data);
-                console.log(data.current.uvi);
+                
+                //uv index
                 var cityUvEl = document.getElementById("uv-index");
                 var cityUv = data.current.uvi;
-                cityUvEl.textContent = "UV Index: " + cityUv;
+                cityUvEl.textContent = cityUv;
                 if (cityUv <= 4) {
                     cityUvEl.setAttribute("class", "favorable");
                 } else if (cityUv >= 7) {
@@ -40,28 +63,43 @@ function citySearch(citySearch) {
                 } else {
                     cityUvEl.setAttribute("class", "moderate");
                 }
-                var currentDate = data.current.dt;
                 
-
+                
+                //weather icon
                 var dd = data.daily;
                 const icon = dd[0].weather[0].icon;
-                const iconLink = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-                iconLink.imageContent = document.getElementById('city-input');
-    
-                //box for display 
-                for (var i=0; i < 5; i++) {
+                console.log(icon);
+                //const mainIcon =  document.createElement('img');
+                //icon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
+
+                
+                
+                //5 day forecast
+                for (var i=1; i < 6; i++) {
                     console.log(dd[i]);
-                    var tempdd = dd[i].temp.day;
-                    var wsdd = dd[i].wind_speed;
+                    var dayCard = document.getElementById(`day${i}`);
+                    var datedd = moment()
+                    .add(i, "days")
+                    .format("MM/DD/YYYY");
+                    var dateddEl = document.createElement('datedd');
+                    dateddEl.textContent = datedd;
+                    var tempdd = Math.round(dd[i].temp.day);
+                    var tempddEl = document.createElement('p');
+                    tempddEl.textContent = "Temp: " + tempdd + "\u00B0F";
+                    var wsdd = Math.round(dd[i].wind_speed);
+                    var wsddEl = document.createElement('p');
+                    wsddEl.textContent = "Wind: " + wsdd + " mph";
+                    var humiditydd = dd[i].humidity;
+                    var humidityddEl = document.createElement('p');
+                    humidityddEl.textContent = "Humidity: " + humiditydd + "%";
                     var icondd = dd[i].weather[0].icon;
-
-                    console.log(tempdd);
-                    console.log(wsdd);
-                    console.log(icondd);
-
-                    tempdd.textContent = document.getElementById('day1');
-                    // wsdd.textContent = document.getElementByClass('col-2');
-                    // icondd.imgContent = document.getElementByClass('col-2');
+                    var iconddEl = document.createElement('p');
+                    iconddEl.textContent = icondd;
+                    var img = document.createElement("img");
+                    img.src = `http://openweathermap.org/img/wn/${icondd}@2x.png`
+                    var lineBreak = document.createElement('p');
+                    lineBreak.textContent = " ";
+                    dayCard.append(dateddEl, img, tempddEl, wsddEl, humidityddEl, lineBreak);
 
 
                 }
@@ -78,6 +116,24 @@ searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
     var city = cityInput.value;
     citySearch(city);
-})
+});
 
+function clearStorage() {
+    localStorage.clear();
+    window.location.reload();
+  }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (localStorage.getItem("City Name")) {
+      searchHistory = localStorage.getItem(
+        "City Name",
+        JSON.stringify(searchHistory)
+      );
+      searchHistory = JSON.parse(searchHistory);
+      console.log(searchHistory);
+      document.getElementById("past-searches").value = searchHistory[0];
+      citySearch();
+    }
+  });
 

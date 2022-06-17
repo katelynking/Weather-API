@@ -1,5 +1,5 @@
 .app-title {
-    background-image: linear-gradient(to right, rgb(66, 66, 212), rgb(19, 4, 60));
+    background-image: linear-gradient(to right, rgb(91, 176, 205), rgb(2, 36, 57));
     color:white;
     text-align: center;
     padding: 20px;
@@ -22,6 +22,7 @@
     border-radius: 6px;
     padding: 8px;
     border:none;
+    background-color: rgb(56, 145, 174);
 }
 
 #clear-btn {
@@ -44,7 +45,7 @@
     background-color: green;
     width: fit-content;
     color: white;
-    padding:8px;
+    padding:6px;
     border-radius:6px;
 }
 
@@ -52,7 +53,7 @@
     background-color: rgb(241, 241, 34);
     width: fit-content;
     color: white;
-    padding:8px;
+    padding:6px;
     border-radius:6px;
 }
 
@@ -60,6 +61,19 @@
     background-color: rgb(166, 29, 29);
     width: fit-content;
     color: white;
-    padding:8px;
+    padding:6px;
     border-radius:6px;
 }
+
+.datedd {
+    font-weight: bolder;
+}
+
+.col-2 {
+    color: white;
+    background-color: rgba(9, 110, 144, 0.782);
+    margin:8px;
+    /* border-radius:20px; */
+
+}
+
