@@ -2,16 +2,15 @@
 var weatherApiKey = "e90149d5df606728396540fdb296f657";
 var cityInput = document.getElementById('city-name');
 var searchBtn = document.getElementById('search-btn');
+var clearBtn = document.getElementById('clear-btn');
 var searchHistory = [];
-
 
 
 function citySearch(citySearch) {
     
     
-    var searchInputVal = citySearch;
-
-    searchHistory.unshift(searchInputVal);
+    var searchInput = citySearch;
+    searchHistory.unshift(searchInput);
     localStorage.setItem("city name", JSON.stringify(searchHistory));
 
 
@@ -50,7 +49,6 @@ function citySearch(citySearch) {
             .then(function(response) {
                 return response.json();
             }).then(function (data) {
-                console.log(data);
                 
                 //uv index
                 var cityUvEl = document.getElementById("uv-index");
@@ -115,13 +113,20 @@ function citySearch(citySearch) {
 searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
     var city = cityInput.value;
-    citySearch(city);
+    if (city === "") {
+        return;
+    } else {
+        citySearch(city);
+    }
 });
+
 
 function clearStorage() {
     localStorage.clear();
     window.location.reload();
   }
+
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -131,10 +136,10 @@ document.addEventListener("DOMContentLoaded", function () {
               JSON.stringify(searchHistory)
             );
             searchHistory = JSON.parse(searchHistory);
-            console.log("SH= " + searchHistory);
-            //document.getElementById("search-history").value = searchHistory[0];
-            citySearch();
+            //console.log(typeof(searchHistory));
           }
     
   });
 
+
+  

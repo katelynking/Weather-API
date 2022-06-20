@@ -1,3 +1,4 @@
+
 .app-title {
     background-image: linear-gradient(to right, rgb(91, 176, 205), rgb(2, 36, 57));
     color:white;
@@ -32,7 +33,7 @@
     background-color: gray;
 }
 
-.search-history{
+#search-history{
     text-align: center;
     justify-items: center;
     padding: 8px;
@@ -82,6 +83,8 @@
     margin-left:8px;
     margin-top: 8px;
 }
+
+
 
 
 
