@@ -17,6 +17,7 @@
 .form-control {
     border-radius: 6px;
     height: 50px;
+   
 }
 
 #search-btn {
@@ -26,12 +27,17 @@
     background-color: rgb(56, 145, 174);
 }
 
-#clear-btn {
+
+#x-btn {
+    position: absolute;
+    right: 20px;
     border-radius: 6px;
-    padding: 8px;
     border:none;
-    background-color: gray;
+    background-color:transparent;
+    margin: 10px;
+    color: gray;
 }
+
 
 #search-history{
     text-align: center;

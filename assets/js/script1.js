@@ -129,17 +129,38 @@ function clearStorage() {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-        if (localStorage.getItem("city name")) {
-            searchHistory = localStorage.getItem(
-              "city name",
-              JSON.stringify(searchHistory)
-            );
-            searchHistory = JSON.parse(searchHistory);
-            //console.log(typeof(searchHistory));
-          }
+// document.addEventListener("DOMContentLoaded", function () {
+//         if (localStorage.getItem("city name")) {
+//             searchHistory = localStorage.getItem(
+//               "city name",
+//               JSON.stringify(searchHistory)
+//             );
+//             searchHistory = JSON.parse(searchHistory);
+//             //console.log(typeof(searchHistory));
+//           }
     
-  });
+//   });
 
 
-  
+function renderCities(){
+    $("#city-list").empty();
+    $("#city-name").val("");
+    
+    for (i=0; i<cityList.length; i++){
+        var a = $("<a>");
+        a.addClass("list-group-item list-group-item-action list-group-item-primary city");
+        a.attr("data-name", cityList[i]);
+        a.text(cityList[i]);
+        $("#city-list").prepend(a);
+    } 
+}
+
+function runCityList() {
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+    
+    if (storedCities !== null) {
+        cityList = storedCities;
+    }
+    
+    renderCities();
+    }

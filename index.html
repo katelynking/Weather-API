@@ -24,13 +24,17 @@
             <div class="card">
                 <h3 class="card-header">Search for a City:</h3>
                 <form id="user-form" class="card-body">
-                    <input name="city-search" id="city-name" class="form-control" type="text" placeholder="Belgrade"><br>
+                    <div class="search-field">
+                        <button type="clear" id="x-btn">x</button>
+                        <input name="city-search" id="city-name" class="form-control" type="text" placeholder="Belgrade">
+                </div>
+                <br>
                     <button type="submit" id="search-btn" class="btn-primary btn-block">Search</button>
-                    <button type="clear" id="clear-btn" class="btn-primary btn-block">Clear</button>
+                    
                 </form>
             </div>
 
-            <div class="card"><br>
+            <div class="list-group"><br>
                 <p id="search-history">Search history</p>
                 
             </div>
@@ -62,8 +66,15 @@
         </div>
 
     <script src="./assets/js/script1.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script 
+        type="text/javascript" 
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+        ></script>
+    <script
+       src="https://code.jquery.com/jquery-3.4.1.js"
+       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+       crossorigin="anonymous"
+        ></script>
 </body>
 
 </html>
