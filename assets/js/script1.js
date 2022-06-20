@@ -14,7 +14,7 @@ function citySearch(citySearch) {
     localStorage.setItem("city name", JSON.stringify(searchHistory));
 
 
-    fetch ("http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&limit=1&units=imperial&appid=" + weatherApiKey)
+    fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&limit=1&units=imperial&appid=" + weatherApiKey)
         .then(function (response) {
             return response.json();
         }).then(function (data) {
@@ -67,7 +67,7 @@ function citySearch(citySearch) {
                 var dd = data.daily;
                 const icon = dd[0].weather[0].icon;
                 var img =  document.getElementById('icon-img');
-                img.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
+                img.src = `https://openweathermap.org/img/wn/${icon}@2x.png`
 
 
                 
@@ -94,7 +94,7 @@ function citySearch(citySearch) {
                     var iconddEl = document.createElement('p');
                     iconddEl.textContent = icondd;
                     var img = document.createElement("img");
-                    img.src = `http://openweathermap.org/img/wn/${icondd}@2x.png`
+                    img.src = `https://openweathermap.org/img/wn/${icondd}@2x.png`
                     var lineBreak = document.createElement('p');
                     lineBreak.textContent = " ";
                     dayCard.append(dateddEl, img, tempddEl, wsddEl, humidityddEl, lineBreak);
