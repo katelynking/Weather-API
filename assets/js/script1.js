@@ -15,7 +15,6 @@ function reload() {
 
 
 function cityBtns() {
-
     document.addEventListener("DOMContentLoaded", function () {
 
         if (localStorage.getItem("city name")) {
@@ -38,7 +37,7 @@ function cityBtns() {
 
                 const city = btns.text[0].innerHTML;
 
-                $(btn).click(function(event) {
+                $(btn).click(function() {
                     //event.preventDefault();
                     //reload();
                     citySearch(city);
@@ -49,14 +48,13 @@ function cityBtns() {
         } else {
             searchHistory = [];
         }
-        
     });
 }
 
 
 
 function citySearch(citySearch) {
-
+    
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&limit=1&units=imperial&appid=${weatherApiKey}`)
         .then(function (response) {
             return response.json();
@@ -159,7 +157,6 @@ searchBtn.addEventListener('click', function (event) {
         return;
     } else {
         citySearch(currentCity);
-        
     }
 });
 
