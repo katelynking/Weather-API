@@ -31,7 +31,7 @@ Link to deployed application: [Weather API](https://katelynking.github.io/Weathe
 1. Open application
 2. Enter city in search box
 
-
+![Weather Dashboard](./assets/img/weather-dashboard.png)
 <a name="license"></a>
 ## License 
 BSD
