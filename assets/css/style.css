@@ -27,7 +27,6 @@
     background-color: rgb(56, 145, 174);
 }
 
-
 #x-btn {
     position: absolute;
     right: 20px;
@@ -38,8 +37,24 @@
     color: gray;
 }
 
+#clear-btn {
+    border-radius: 6px;
+    padding: 8px;
+    border:none;
+    background-color: gray;
+}
+
 
 #search-history{
+    text-align: center;
+    justify-items: center;
+    padding: 8px;
+    background-color: lightgrey;
+    color: black;
+    border-radius: 6px;
+}
+
+btn {
     text-align: center;
     justify-items: center;
     padding: 8px;
