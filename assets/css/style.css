@@ -38,6 +38,8 @@
 }
 
 #clear-btn {
+    text-align: center;
+    justify-items: center;
     border-radius: 6px;
     padding: 8px;
     border:none;
@@ -49,19 +51,20 @@
     text-align: center;
     justify-items: center;
     padding: 8px;
-    background-color: lightgrey;
     color: black;
     border-radius: 6px;
 }
 
-btn {
+.search-history-btn {
     text-align: center;
     justify-items: center;
     padding: 8px;
-    background-color: lightgrey;
+    background-color: lightgray;
     color: black;
     border-radius: 6px;
+    margin: 6px;
 }
+
 
 .favorable {
     background-color: green;
@@ -82,7 +85,7 @@ btn {
 .severe {
     background-color: rgb(166, 29, 29);
     width: fit-content;
-    color: white;
+    color: whit0;
     padding:6px;
     border-radius:6px;
 }
@@ -96,7 +99,7 @@ btn {
 
 }
 
-.col-8 {
+.col-10 {
     margin-bottom: 50px;
 }
 

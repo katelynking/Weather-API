@@ -2,11 +2,58 @@
 var weatherApiKey = "e90149d5df606728396540fdb296f657";
 var cityInput = document.getElementById('city-name');
 var searchBtn = document.getElementById('search-btn');
+var xBtn = document.getElementById('x-btn');
 var clearBtn = document.getElementById('clear-btn');
 var currentCity;
 var searchHistory = [];
 
-storeCities();
+cityBtns();
+
+function reload() {
+    document.location.reload();
+}
+
+
+function cityBtns() {
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        if (localStorage.getItem("city name")) {
+            searchHistory = localStorage.getItem(
+                "city name",
+                JSON.stringify(searchHistory)
+            );
+            searchHistory = JSON.parse(searchHistory);
+            
+
+            const searchEl = $('#search-history').empty();
+            for (i = 0; i < searchHistory.length; i++) {
+                const btn = $("<button>");
+                const btns = {
+                    class: btn.addClass("list-group-item list-group-item-action  search-history-btn"),
+                    attr: btn.attr("id", searchHistory[i]),
+                    text: btn.text(searchHistory[i]),
+                }
+                searchEl.prepend(btn);
+
+                const city = btns.text[0].innerHTML;
+
+                $(btn).click(function(event) {
+                    //event.preventDefault();
+                    //reload();
+                    citySearch(city);
+                });
+                
+            }
+
+        } else {
+            searchHistory = [];
+        }
+        
+    });
+}
+
+
 
 function citySearch(citySearch) {
 
@@ -16,8 +63,8 @@ function citySearch(citySearch) {
         }).then(function (data) {
 
             //city name
-            var cityNameEl = document.getElementById('city-input');
-            var cityName = data.name;
+            const cityNameEl = document.getElementById('city-input');
+            const cityName = data.name;
             cityNameEl.textContent = cityName;
 
             //date 
@@ -43,9 +90,11 @@ function citySearch(citySearch) {
             const lon = data.coord.lon;
 
             var searchInput = cityName;
-            searchHistory.unshift(searchInput);
-            localStorage.setItem("city name", JSON.stringify(searchHistory));
-            
+            if (!searchHistory.includes(searchInput)) {
+                searchHistory.unshift(searchInput);
+                localStorage.setItem("city name", JSON.stringify(searchHistory));
+            }
+
             fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&units=imperial&appid=${weatherApiKey}`)
                 .then(function (response) {
                     return response.json();
@@ -77,33 +126,30 @@ function citySearch(citySearch) {
                         var datedd = moment()
                             .add(i, "days")
                             .format("MM/DD/YYYY");
-                        var dateddEl = document.createElement('datedd');
+                        var dateddEl = document.getElementById(`datedd${i}`);
                         dateddEl.textContent = datedd;
                         var tempdd = Math.round(dd[i].temp.day);
-                        var tempddEl = document.createElement('p');
+                        var tempddEl = document.getElementById(`t${i}`);
                         tempddEl.textContent = "Temp: " + tempdd + "\u00B0F";
                         var wsdd = Math.round(dd[i].wind_speed);
-                        var wsddEl = document.createElement('p');
+                        var wsddEl = document.getElementById(`w${i}`);
                         wsddEl.textContent = "Wind: " + wsdd + " mph";
                         var humiditydd = dd[i].humidity;
-                        var humidityddEl = document.createElement('p');
+                        var humidityddEl = document.getElementById(`h${i}`);
                         humidityddEl.textContent = "Humidity: " + humiditydd + "%";
                         var icondd = dd[i].weather[0].icon;
-                        var iconddEl = document.createElement('p');
-                        iconddEl.textContent = icondd;
-                        var img = document.createElement("img");
+                        var img = document.getElementById(`img${i}`);
                         img.src = `https://openweathermap.org/img/wn/${icondd}@2x.png`
-                        var lineBreak = document.createElement('p');
-                        lineBreak.textContent = " ";
-                        dayCard.append(dateddEl, img, tempddEl, wsddEl, humidityddEl, lineBreak);
-
+                        
+        
+                        dayCard.append(dateddEl, img, tempddEl, wsddEl, humidityddEl);
+                        
                     }
 
                 })
         });
 
 }
-
 
 
 searchBtn.addEventListener('click', function (event) {
@@ -113,6 +159,7 @@ searchBtn.addEventListener('click', function (event) {
         return;
     } else {
         citySearch(currentCity);
+        
     }
 });
 
@@ -120,6 +167,7 @@ cityInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         searchBtn.click();
+        
     }
 });
 
@@ -130,40 +178,5 @@ clearBtn.addEventListener('click', function (event) {
 });
 
 
-function storeCities() {
-    document.addEventListener("DOMContentLoaded", function () {
-        if (localStorage.getItem("city name")) {
-            searchHistory = localStorage.getItem(
-                "city name",
-                JSON.stringify(searchHistory)
-            );
-            searchHistory = JSON.parse(searchHistory);
 
-            const searchEl = $('#search-history').empty();
-            for (i = 0; i < searchHistory.length; i++) {
-                var btn = $("<button>");
-                btn.addClass("list-group-item list-group-item-action list-group-item-primary search-history");
-                btn.attr("search-history", searchHistory[i]);
-                btn.text(searchHistory[i]);
-                searchEl.prepend(btn);
-            }
-
-        }
-
-    });
-}
-
-
-
-function loadCurrentWeather() {
-    var loadWeather = JSON.parse(localStorage.getItem("current-city"));
-    if (storedWeather !== null) {
-        currentCity = loadWeather;
-    }
-}
-
-function storeCurrentCity() {
-    localStorage.setItem("current-city", JSON.stringify(citySearch));
-}
-//storeCurrentCity();
 
