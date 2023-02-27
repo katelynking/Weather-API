@@ -1,16 +1,23 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Gloock&family=Montserrat&family=Roboto&display=swap');
+
+
+
 .app-title {
     background-image: linear-gradient(to right, rgb(91, 176, 205), rgb(2, 36, 57));
     color:white;
     text-align: center;
     padding: 20px;
     font-weight: bold;
+    font-family:'Gloock';
 }
 
 .card-header {
     font-weight:bold;
     background-color: white;
     border: none;
+    font-family:'Roboto';
+    letter-spacing: 0rem;
     
 }
 
@@ -25,6 +32,8 @@
     padding: 8px;
     border:none;
     background-color: rgb(56, 145, 174);
+    font-family:'Roboto';
+    letter-spacing: 0rem;
 }
 
 #x-btn {
@@ -44,6 +53,8 @@
     padding: 8px;
     border:none;
     background-color: gray;
+    font-family:'Roboto';
+    letter-spacing: 0rem;
 }
 
 
@@ -53,6 +64,8 @@
     padding: 8px;
     color: black;
     border-radius: 6px;
+    font-family:'Roboto';
+    letter-spacing: 0rem;
 }
 
 .search-history-btn {
@@ -63,11 +76,13 @@
     color: black;
     border-radius: 6px;
     margin: 6px;
+    font-family:'Roboto';
+    letter-spacing: 0rem;
 }
 
 
 .favorable {
-    background-color: green;
+    background-color: rgba(25, 136, 25, 0.696);
     width: fit-content;
     color: white;
     padding:6px;
@@ -75,7 +90,7 @@
 }
 
 .moderate {
-    background-color: rgb(241, 241, 34);
+    background-color: rgb(209, 209, 21);
     width: fit-content;
     color: white;
     padding:6px;
@@ -83,24 +98,30 @@
 }
 
 .severe {
-    background-color: rgb(166, 29, 29);
+    background-color: rgb(106, 2, 2);
     width: fit-content;
-    color: whit0;
+    color: white;
     padding:6px;
     border-radius:6px;
 }
 
 .col-2 {
-    color: white;
-    background-color: rgba(9, 110, 144, 0.782);
+    color: rgb(0, 44, 61);
+    background-color: rgb(255, 255, 255);
     margin:8px;
     font-weight: bold;
     text-align: center;
+    font-family:'Roboto';
+    letter-spacing: 0rem;
+    border-radius:20px;
+    border:solid 1px rgb(255, 255, 255);
 
 }
 
 .col-10 {
     margin-bottom: 50px;
+    font-family:'Roboto';
+    letter-spacing: 0rem;
 }
 
 .row {

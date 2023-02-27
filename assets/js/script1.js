@@ -15,7 +15,7 @@ function reload() {
 
 
 function cityBtns() {
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
 
         if (localStorage.getItem("city name")) {
             searchHistory = localStorage.getItem(
@@ -29,7 +29,7 @@ function cityBtns() {
             for (i = 0; i < searchHistory.length; i++) {
                 const btn = $("<button>");
                 const btns = {
-                    class: btn.addClass("list-group-item list-group-item-action  search-history-btn"),
+                    class: btn.addClass("list-group-item list-group-item-action search-history-btn"),
                     attr: btn.attr("id", searchHistory[i]),
                     text: btn.text(searchHistory[i]),
                 }
@@ -42,9 +42,7 @@ function cityBtns() {
                     //reload();
                     citySearch(city);
                 });
-                
             }
-
         } else {
             searchHistory = [];
         }
